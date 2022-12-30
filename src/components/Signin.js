@@ -1,4 +1,5 @@
 import { Button, Form, Input, Card, Row, Col } from 'antd';
+import { Link } from 'react-router-dom';
 
 const Signin = () => {
     const onFinish = (values) => {
@@ -42,6 +43,7 @@ const Signin = () => {
                             </Button>
                         </Form.Item>
                     </Form>
+                    I don't have an account yet <Link to={'/signup'}>Click</Link>
                 </Card>
             </Col>
         </Row>

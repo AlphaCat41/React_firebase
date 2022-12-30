@@ -1,4 +1,5 @@
 import { Button, Form, Input, Card, Row, Col, Alert } from 'antd';
+import { Link } from 'react-router-dom';
 import { createUser } from '../auth/auth';
 import { useState } from 'react'
 
@@ -72,10 +73,10 @@ const Signup = () => {
                             </Button>
                         </Form.Item>
                     </Form>
+                    I already have an account <Link to={'/signin'}>Click</Link>
                     {isShowError && <Alert message='Failed to register' type="error" showIcon />}
                     {isShowSuccess &&  <Alert message='Successfully registered' type="success" showIcon />}
                 </Card>
-                
             </Col>
             <Col span={7}>Col3</Col>
         </Row>
