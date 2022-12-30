@@ -4,6 +4,7 @@ import './index.css';
 import Signin from './components/Signin';
 import Signup from './components/Signup';
 import Home from './components/Home';
+import Dashboard from './components/Dashboard';
 
 import {
   createBrowserRouter,
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
   {
     path: "signup",
     element: (<Signup />),
+  },
+  {
+    path: "dashboard",
+    element: (<Dashboard/>),
   },
 ]);
 

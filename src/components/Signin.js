@@ -1,24 +1,32 @@
-import { Button, Form, Input, Card, Row, Col } from 'antd';
-import { Link } from 'react-router-dom';
+import { Button, Form, Input, Card, Row, Col, message  } from 'antd';
+import { Link, useNavigate } from 'react-router-dom';
+import { signin } from '../auth/auth';
 
 const Signin = () => {
-    const onFinish = (values) => {
-        console.log('Success:', values);
-      };
-    
-    const onFinishFailed = (errorInfo) => {
-        console.log('Failed:', errorInfo);
-    };
+    const [messageApi, contextHolder] = message.useMessage();
+    const navigate = useNavigate();
 
+    const onFinish = async(values) => {
+        await signin(values.email, values.password)
+          .then((res) =>{
+                console.log(res)
+                messageApi.success('logged in successfully')
+                setTimeout(() => navigate('/dashboard'), 1000)  
+          })
+          .catch((e) =>{
+              messageApi.success(e.message)
+          })
+    };
+    
     return ( 
         <Row>
             <Col span={12}>col1</Col>
             <Col span={12}>
+                {contextHolder}
                 <Card style={{ width: 500, height: 400 }}>
                     <h1>Sign in</h1>
                     <Form
                         onFinish={onFinish}
-                        onFinishFailed={onFinishFailed}
                         layout="vertical"
                     >
                         <Form.Item
