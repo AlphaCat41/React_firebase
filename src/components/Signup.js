@@ -1,19 +1,18 @@
-import { Button, Form, Input, Card, Row, Col, Alert } from 'antd';
+import { Button, Form, Input, Card, Row, Col, message } from 'antd';
 import { Link } from 'react-router-dom';
 import { createUser } from '../auth/auth';
-import { useState } from 'react'
+
 
 const Signup = () => {
-    const [isShowError, setIsShowError] = useState(false)
-    const [isShowSuccess, setIsShowSuccess] = useState(false)
+    const [messageApi, contextHolder] = message.useMessage();
 
     const onFinish = async(values) => {
       await createUser(values.email, values.password)
         .then((res) =>{
-            setIsShowSuccess(true)
+            messageApi.success('Successfully registered')
         })
         .catch((e) =>{
-            setIsShowError(true)
+            messageApi.success('Failed to register')
         })
     };
         
@@ -21,6 +20,7 @@ const Signup = () => {
         <Row>
             <Col span={7}>Col1</Col>
             <Col span={10}>
+                {contextHolder}
                 <Card style={{ width: 500, height: 500 }}>
                     <h1>Sign up</h1>
                     <Form
@@ -74,8 +74,7 @@ const Signup = () => {
                         </Form.Item>
                     </Form>
                     I already have an account <Link to={'/signin'}>Click</Link>
-                    {isShowError && <Alert message='Failed to register' type="error" showIcon />}
-                    {isShowSuccess &&  <Alert message='Successfully registered' type="success" showIcon />}
+                    
                 </Card>
             </Col>
             <Col span={7}>Col3</Col>
