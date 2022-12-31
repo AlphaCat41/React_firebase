@@ -12,6 +12,10 @@ const auth = (user={data: [], isSignedin: false}, action) => {
       localStorage.setItem('user', JSON.stringify(user))
       return user
 
+    case 'SIGNOUT_SUCCESS':
+      localStorage.removeItem('user')
+      return user
+
     default:
       return user
   }
