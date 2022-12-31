@@ -1,16 +1,12 @@
-import { Button } from "antd";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 
 const Home = () => {
     const navigate = useNavigate();
-    return ( 
-        <div>
-            <h1>Welcome</h1>
-            <Button type="primary" onClick={() => navigate("/signin")}>Sign in</Button>
-            <Button type="primary" onClick={() => navigate("/signup")}>Sign up</Button>
-        </div>
-     );
+    useEffect(() =>{
+        navigate('/signin')
+    }, [])
 }
  
 export default Home;
