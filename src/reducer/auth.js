@@ -1,10 +1,13 @@
-const auth = (user=[], action) => {
+const auth = (user={data: [], isSignedin: false}, action) => {
   switch (action.type) {
     case 'SIGNIN_SUCCESS':
-      user = action.user;
+      user.data = action.user;
+      user.isSignedin = true
       return user
+      
     case 'SIGNUP_SUCCESS':
-      user = action.user;
+      user.data = action.user;
+      user.isSignedin = true
       return user
     default:
       return user
