@@ -3,12 +3,19 @@ import { Link, useNavigate } from 'react-router-dom';
 import { createUser } from '../auth/auth';
 import { useDispatch } from 'react-redux';
 import { signupSuccess } from '../action/auth';
-
+import { useEffect } from 'react';
 
 const Signup = () => {
     const [messageApi, contextHolder] = message.useMessage();
     const navigate = useNavigate();
     const dispatch = useDispatch()
+
+    useEffect(() =>{
+        const user = JSON.parse(localStorage.getItem('user'))
+        if(user){
+            navigate('/dashboard')
+        }
+    }, [])
 
     const onFinish = async(values) => {
       await createUser(values.email, values.password)
