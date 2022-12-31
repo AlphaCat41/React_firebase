@@ -1,16 +1,20 @@
 import { Button, Form, Input, Card, Row, Col, message  } from 'antd';
 import { Link, useNavigate } from 'react-router-dom';
 import { signin } from '../auth/auth';
+import { useDispatch } from 'react-redux';
+import { signinSuccess } from '../action/auth';
 
 const Signin = () => {
     const [messageApi, contextHolder] = message.useMessage();
     const navigate = useNavigate();
-
+    const dispatch = useDispatch()
+    
     const onFinish = async(values) => {
         await signin(values.email, values.password)
           .then((res) =>{
                 console.log(res)
                 messageApi.success('logged in successfully')
+                dispatch(signinSuccess(res))
                 setTimeout(() => navigate('/dashboard'), 1000)  
           })
           .catch((e) =>{
