@@ -5,7 +5,9 @@ import Signin from './components/Signin';
 import Signup from './components/Signup';
 import Home from './components/Home';
 import Dashboard from './components/Dashboard';
-
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
+import rootReducer from './reducer/rootReducer';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -30,7 +32,12 @@ const router = createBrowserRouter([
   },
 ]);
 
+const store = createStore(rootReducer)
+
 createRoot(document.getElementById("root")).render(
-  <RouterProvider router={router} />
+  <Provider store={store}>
+    <RouterProvider router={router} />
+  </Provider>
+  
 );
 
