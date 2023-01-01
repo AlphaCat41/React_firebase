@@ -1,7 +1,7 @@
 
 
 const validateExpirationTime = () =>{
-    const expiration = false
+    var expiration = false
     const user = JSON.parse(localStorage.getItem('user'))
     const expirationTime = user.data.expirationTime
     const dateNow = Date.now();
