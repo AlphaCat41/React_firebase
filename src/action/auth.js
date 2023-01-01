@@ -1,11 +1,11 @@
-export const signinSuccess = (user) => ({
+export const signinSuccess = (res) => ({
     type: 'SIGNIN_SUCCESS',
-    user
+    res
   });
   
-export const signupSuccess = (user) => ({
+export const signupSuccess = (res) => ({
     type: 'SIGNUP_SUCCESS',
-    user
+    res
 });
 
 export const signoutSuccess = () => ({

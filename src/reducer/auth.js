@@ -1,13 +1,19 @@
-const auth = (user={data: [], isSignedin: false}, action) => {
+const auth = (
+  user={
+    data: {
+      email: '',
+      accessToken: '',
+      expirationTime: ''
+    }, 
+    isSignedin: false
+  }, 
+  action
+  ) => {
   switch (action.type) {
-    case 'SIGNIN_SUCCESS':
-      user.data = action.user;
-      user.isSignedin = true
-      localStorage.setItem('user', JSON.stringify(user))
-      return user
-
-    case 'SIGNUP_SUCCESS':
-      user.data = action.user;
+    case 'SIGNIN_SUCCESS' || 'SIGNUP_SUCCESS':
+      user.data.email = action.res.user.email
+      user.data.accessToken = action.res.user.accessToken
+      user.data.expirationTime = action.res.user.stsTokenManager.expirationTime
       user.isSignedin = true
       localStorage.setItem('user', JSON.stringify(user))
       return user

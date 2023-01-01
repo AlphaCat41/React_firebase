@@ -20,9 +20,8 @@ const Signin = () => {
     const onFinish = async(values) => {
         await signin(values.email, values.password)
           .then((res) =>{
-                console.log(res)
-                messageApi.success('logged in successfully')
                 dispatch(signinSuccess(res))
+                messageApi.success('logged in successfully')
                 setTimeout(() => navigate('/dashboard'), 1000)  
           })
           .catch((e) =>{
