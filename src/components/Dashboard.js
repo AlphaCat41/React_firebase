@@ -9,9 +9,9 @@ const Dashboard = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     useEffect(() =>{
-       
+        var expiration = validateExpirationTime()
         const user = JSON.parse(localStorage.getItem('user'))
-        if(!user || validateExpirationTime()){
+        if(!user || expiration){
             navigate('/signin')
         }
     }, [])
